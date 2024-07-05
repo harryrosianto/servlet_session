@@ -185,3 +185,50 @@ public class WelcomeSessionServlet extends HttpServlet {
 ```
 
 Metode-metode ini memberikan berbagai cara untuk mengelola sesi dalam aplikasi web, masing-masing dengan kelebihan dan kekurangannya sendiri tergantung pada kebutuhan aplikasi.
+
+Kode XML di bawah ini adalah konfigurasi sesi dalam file `web.xml` untuk aplikasi web berbasis servlet di Java.
+
+```xml
+<session-config>
+  <session-timeout>20</session-timeout>
+</session-config>
+```
+
+### Penjelasan:
+
+1. **`<session-config>`**:
+   - Elemen ini digunakan untuk mengonfigurasi pengaturan sesi untuk aplikasi web.
+   
+2. **`<session-timeout>`**:
+   - Elemen ini digunakan untuk mengatur waktu timeout sesi dalam menit. Waktu timeout menentukan berapa lama sesi harus tidak aktif sebelum server mengakhirinya secara otomatis.
+   
+### Dalam Konteks:
+
+- **`<session-timeout>20</session-timeout>`**:
+  - Ini berarti bahwa sesi pengguna akan otomatis diakhiri setelah 20 menit tidak ada aktivitas. Jika pengguna tidak mengirimkan permintaan ke server dalam periode ini, sesi akan dianggap tidak aktif dan dihapus.
+  
+### Kapan Ini Digunakan?
+
+Pengaturan ini biasanya digunakan untuk meningkatkan keamanan dan efisiensi sumber daya:
+
+- **Keamanan**: Membatasi waktu sesi dapat membantu mencegah sesi yang terbengkalai digunakan oleh orang yang tidak berwenang.
+- **Efisiensi Sumber Daya**: Mengakhiri sesi yang tidak aktif dapat membantu mengurangi penggunaan memori dan sumber daya server.
+
+### Contoh Konfigurasi `web.xml` dengan `session-config`:
+
+```xml
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+
+    <!-- Other configurations like servlets, filters, listeners -->
+</web-app>
+```
+
+Dalam contoh di atas, aplikasi web diatur sehingga setiap sesi yang tidak aktif selama 20 menit akan otomatis berakhir. Konfigurasi ini membantu memastikan bahwa sumber daya server tidak digunakan oleh sesi yang tidak aktif untuk waktu yang lama dan meningkatkan keamanan aplikasi.
